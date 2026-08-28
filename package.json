@@ -1,0 +1,23 @@
+{
+  "name": "cfa-applications-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Internal Cinema Foundation of Armenia applications dashboard.",
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.3"
+  },
+  "dependencies": {
+    "lucide-react": "^1.35.0",
+    "next": "^16.3.3",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "recharts": "^3.10.1"
+  }
+}
