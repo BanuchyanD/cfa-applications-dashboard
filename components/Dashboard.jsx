@@ -23,6 +23,21 @@ import {
 } from "recharts";
 
 const COLORS = ["#245c4d", "#9f4f42", "#315d86", "#b8862f", "#55706f", "#7c6957"];
+const ARMENIAN_MONTHS = [
+  "հնվ",
+  "փտվ",
+  "մրտ",
+  "ապր",
+  "մյս",
+  "հնս",
+  "հլս",
+  "օգս",
+  "սեպ",
+  "հոկ",
+  "նոյ",
+  "դեկ",
+];
+const YEREVAN_UTC_OFFSET_MS = 4 * 60 * 60 * 1000;
 
 const initialFilters = {
   competition: "",
@@ -601,7 +616,8 @@ function startOfDay(date) {
 }
 
 function formatNumber(value) {
-  return new Intl.NumberFormat("hy-AM").format(Math.round(Number(value || 0)));
+  const number = Math.round(Number(value || 0));
+  return String(number).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0");
 }
 
 function formatAmd(value) {
@@ -617,19 +633,26 @@ function compactAmd(value) {
 
 function formatDate(value) {
   if (!value) return "Չնշված";
-  return new Intl.DateTimeFormat("hy-AM", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  }).format(new Date(`${value}T00:00:00`));
+  const [year, month, day] = String(value).split("-").map(Number);
+  if (!year || !month || !day) return "Չնշված";
+
+  return `${padDatePart(day)} ${ARMENIAN_MONTHS[month - 1]}, ${year} թ.`;
 }
 
 function formatDateTime(value) {
-  return new Intl.DateTimeFormat("hy-AM", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(new Date(value));
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Չնշված";
+
+  const yerevanDate = new Date(date.getTime() + YEREVAN_UTC_OFFSET_MS);
+  const day = yerevanDate.getUTCDate();
+  const month = yerevanDate.getUTCMonth();
+  const year = yerevanDate.getUTCFullYear();
+  const hour = yerevanDate.getUTCHours();
+  const minute = yerevanDate.getUTCMinutes();
+
+  return `${padDatePart(day)} ${ARMENIAN_MONTHS[month]}, ${year} թ., ${padDatePart(hour)}:${padDatePart(minute)}`;
+}
+
+function padDatePart(value) {
+  return String(value).padStart(2, "0");
 }
