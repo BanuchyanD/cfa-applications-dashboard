@@ -231,7 +231,7 @@ export default function Dashboard({ initialPayload }) {
           ) : (
             <>
               <section className="visual-grid" aria-label="Վիճակագրական գրաֆիկներ">
-                <ChartPanel title="Լիամետրաժ vs Կարճամետրաժ">
+                <ChartPanel title="Լիամետրաժ / Կարճամետրաժ">
                   <DonutChart data={chartData.length} />
                 </ChartPanel>
                 <ChartPanel title="Դեբյուտային vs Ոչ դեբյուտային">
