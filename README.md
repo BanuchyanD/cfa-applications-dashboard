@@ -13,9 +13,13 @@ Create a local `.env.local` file using `.env.example` as the template:
 ```sh
 MONDAY_API_TOKEN=
 MONDAY_BOARD_ID=5102823771
+DASHBOARD_USER=
+DASHBOARD_PASSWORD=
 ```
 
 When `MONDAY_API_TOKEN` is not configured, the interface uses a clearly labelled development demo dataset.
+The dashboard is protected with server-side HTTP Basic Auth. If `DASHBOARD_USER` or
+`DASHBOARD_PASSWORD` is missing, the app fails closed with a configuration error.
 
 ## Development
 
