@@ -169,7 +169,7 @@ export default function Dashboard({ initialPayload }) {
         <div>
           <p className="eyebrow">Cinema Foundation of Armenia</p>
           <h1>CFA Applications Dashboard</h1>
-          <p className="subtitle">«{meta.boardName}» խորհրդի հայտերի գործադիր դիտարկում</p>
+          <p className="subtitle">Հայտերի ուսումնասիրություն</p>
         </div>
 
         <div className="header-actions">
