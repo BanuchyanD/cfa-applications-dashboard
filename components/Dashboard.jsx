@@ -234,13 +234,13 @@ export default function Dashboard({ initialPayload }) {
                 <ChartPanel title="Լիամետրաժ / Կարճամետրաժ">
                   <DonutChart data={chartData.length} />
                 </ChartPanel>
-                <ChartPanel title="Դեբյուտային vs Ոչ դեբյուտային">
+                <ChartPanel title="Դեբյուտային / Ոչ դեբյուտային">
                   <DonutChart data={chartData.debut} />
                 </ChartPanel>
                 <ChartPanel title="Մասնակցության քանակը">
                   <SimpleBarChart data={chartData.participation} />
                 </ChartPanel>
-                <ChartPanel title="Ընդունված vs Չընդունված">
+                <ChartPanel title="Ընդունված / Չընդունված">
                   <DonutChart data={chartData.applicationStatus} />
                 </ChartPanel>
                 <ChartPanel title="Շտկման կարգավիճակ">
