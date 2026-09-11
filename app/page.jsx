@@ -1,5 +1,7 @@
-import Dashboard from "@/components/Dashboard";
+import { cookies } from "next/headers";
+import CategoryDashboard from "@/components/CategoryDashboard";
 import { getApplicationsPayload } from "@/lib/applications-service";
+import { decodeFilmCategoryCookie } from "@/lib/film-category";
 
 export const dynamic = "force-dynamic";
 
@@ -12,5 +14,15 @@ export default async function Home() {
     error: "Չհաջողվեց բեռնել monday.com տվյալները։ Ստուգեք MONDAY_API_TOKEN-ը եւ board access-ը։",
   }));
 
-  return <Dashboard initialPayload={initialPayload} />;
+  const cookieStore = await cookies();
+  const initialCategory = decodeFilmCategoryCookie(
+    cookieStore.get("cfa-film-category")?.value || "",
+  );
+
+  return (
+    <CategoryDashboard
+      initialPayload={initialPayload}
+      initialCategory={initialCategory}
+    />
+  );
 }
