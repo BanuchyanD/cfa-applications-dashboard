@@ -255,7 +255,6 @@ export default function Dashboard({ initialPayload }) {
               </section>
 
               <DeadlinesSection deadlines={deadlines} />
-              <ApplicationsTable applications={filtered} />
             </>
           )}
         </>
